@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Ürün Resmi -->
+      <img [src]="imageSrc" alt="{{product?.brand}}" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <!-- Ürün Bilgileri -->
+      <h2>{{ product?.brand }}</h2>
+      <p><strong>Kategori:</strong> {{ product?.categoryName }}</p>
+      <p><strong>Marka:</strong> {{ product?.brand }}</p>
+      <p><strong>Fiyat:</strong> {{ product?.price | currency }}</p>
+      <p><strong>Stok:</strong> {{ product?.stock }}</p>
+      <p><strong>Açıklama:</strong></p>
+      <p>{{ product?.detail }}</p>
+      <!-- İletişim veya Alışveriş Yapma Butonu -->
+       <div class=" d-flex justify-content-between">
+        <div class=" d-flex align-items-center">
+       <button class=" btn btn-primary mr-4 rounded" *ngIf="isAdmin" [routerLink]="['/edit-product',product?.id]">Edit Product</button>
+       <button 
+          class="btn btn-outline-danger btn-sm rounded" 
+          style="height: 50px;"
+          *ngIf="isAdmin" (click)="deleteProduct(product?.barcode)" [routerLink]="['/product-list']">DELETE </button>
+      </div>
+      </div>
+      <label for="quantity">Quantity:</label>
+      <div class="input-group">
+        <button type="button" class="btn btn-outline-secondary" (click)="decrementQuantity()">-</button>
+        <input type="text" class="form-control text-center" [value]="quantity" readonly>
+        <button type="button" class="btn btn-outline-secondary" (click)="incrementQuantity()">+</button>
+      </div>
+
+      <!-- Add to Cart Button -->
+      <button class="btn btn-success mt-3" (click)="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+  <div *ngIf="product">
+  
+    <!-- Recommendations Section -->
+    <h2 class="text-center my-5">Recommended Products</h2>
+    <div *ngIf="productRecommendations.length > 0">
+      <div *ngFor="let recommendedProduct of productRecommendations">
+        <div class="row">
+          <div class="col-md-6">
+            <div class=" d-flex flex-direction-column">
+
+              <img
+              [src]="recommendedProductImages[recommendedProduct.id]" alt="Product image">
+            </div>
+      </div>
+        <div class="col-md-6">
+        <h3>Brand:{{ recommendedProduct.brand }}</h3>
+        <p>Description:{{ recommendedProduct.detail }}</p>
+      </div>
+      </div>
+        
+        <a [routerLink]="['/product-detail', recommendedProduct.id]">View Product</a>
+      </div>
+    </div>
+    <div *ngIf="productRecommendations.length === 0">
+      <p>No recommendations available</p>
+    </div>
+  </div>
+</div>

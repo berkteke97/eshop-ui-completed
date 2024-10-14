@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center mb-4">Edit Product</h2>
+      <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group mb-3">
+          <label for="price">Price:</label>
+          <input type="number" class="form-control" formControlName="price" required>
+          <div *ngIf="editProductForm.get('price')?.invalid && editProductForm.get('price')?.touched" class="text-danger">
+            Price is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="categoryName">Category Name:</label>
+          <input type="text" class="form-control" formControlName="categoryName" required>
+          <div *ngIf="editProductForm.get('categoryName')?.invalid && editProductForm.get('categoryName')?.touched" class="text-danger">
+            Category name is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="brand">Brand:</label>
+          <input type="text" class="form-control" formControlName="brand" required>
+          <div *ngIf="editProductForm.get('brand')?.invalid && editProductForm.get('brand')?.touched" class="text-danger">
+            Brand is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="stock">Stock:</label>
+          <input type="number" class="form-control" formControlName="stock" required>
+          <div *ngIf="editProductForm.get('stock')?.invalid && editProductForm.get('stock')?.touched" class="text-danger">
+            Stock is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="detail">Detail:</label>
+          <textarea class="form-control" formControlName="detail" required></textarea>
+          <div *ngIf="editProductForm.get('detail')?.invalid && editProductForm.get('detail')?.touched" class="text-danger">
+            Detail is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="barcode">Barcode:</label>
+          <input type="text" class="form-control" formControlName="barcode" required />
+          <div *ngIf="editProductForm.get('barcode')?.invalid && editProductForm.get('barcode')?.touched" class="text-danger">
+            Barcode is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="imageFile">Product Image</label>
+      <!-- Display current image -->
+      <div *ngIf="currentImageUrl">
+        <img [src]="currentImageUrl" alt="Current Product Image" style="max-width: 200px;"/>
+      </div>
+      <!-- File input for uploading a new image -->
+      <input type="file" (change)="onFileSelected($event)" />
+      <div *ngIf="imageError">Please select a valid image file.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!editProductForm.valid || !selectedFile">
+          Edit Product
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

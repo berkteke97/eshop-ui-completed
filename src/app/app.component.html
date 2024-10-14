@@ -1,0 +1,41 @@
+<nav class="nav bg-dark d-flex justify-content-between">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="['/']">Home</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="['/product-list']">Products</a>
+    </li>
+  </ul>
+
+  <ul class="nav ms-auto">
+    <!-- If there is no logged in user -->
+    <li class="nav-item" *ngIf="!currentUser">
+      <a class="nav-link active" [routerLink]="['/register']">Register</a>
+    </li>
+
+    <!-- Giriş yapmamış kullanıcıya giriş bağlantısı göster -->
+    <li class="nav-item" *ngIf="!currentUser">
+      <a class="nav-link active" [routerLink]="['/auth']">Login</a>
+    </li>
+
+    <!-- When user has logged in -->
+    <li class="nav-item" *ngIf="currentUser">
+      <a class="nav-link active" [routerLink]="['/customer-profile']">{{currentUser.user}}</a>
+    </li>
+
+    <!-- Giriş yapmış kullanıcıya çıkış bağlantısı göster -->
+    <li class="nav-item" *ngIf="currentUser">
+      <a class="nav-link active" (click)="logout()" [routerLink]="['/auth']">Logout</a>
+    </li>
+
+    <li class="nav-item" *ngIf="currentUser">
+      <a class="nav-link active" [routerLink]="['/my-cart']">My Cart</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

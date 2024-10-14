@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <table class="table table-light">
+      <thead class="thead-light">
+        <tr>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Details</th> <!-- Yeni sütun -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of product">
+          <td>{{ s.price }}</td>
+          <td>{{ s.stock }}</td>
+          <td>
+            <button [routerLink]="['/product-detail',s.id]">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <button [routerLink]="['/add-product'] " class="btn-primary">Add New Product</button>
+    </div>
+  </div>
+  

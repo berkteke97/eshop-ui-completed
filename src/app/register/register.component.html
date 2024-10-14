@@ -1,0 +1,65 @@
+<div class="container-fluid">
+
+    <div class="card" style="width: 50%;margin: 5px auto;">
+        <div class="card-header">
+            Register
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input [(ngModel)]="customer.username" id="username" name="username" class="form-control" type="text">
+                </div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input [(ngModel)]="customer.password" matInput [type]="showPassword ? 'text' : 'password'" name="password">
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                        {{showPassword?'visibility_off':'visibility'}}
+                    </mat-icon>
+                </mat-form-field>
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input [(ngModel)]="customer.name" id="name" name="name" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input [(ngModel)]="customer.surname" id="surname" name="surname" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input [(ngModel)]="customer.email" id="email" name="email" class="form-control" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input [(ngModel)]="customer.phone" id="phone" name="phone" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input [(ngModel)]="customer.address" name="address" id="address" class="form-control" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label for="aggreement">Agreement</label>
+                    <input [(ngModel)]="customer.agreement" name="aggreement" id="aggreement" class="form-control" type="checkbox" >
+                </div>
+
+
+                
+                
+
+
+                <button class="btn btn-primary" (click)="saveCustomer()">Save</button>
+            </form>
+        </div>
+        <div class="card-footer" *ngIf="showAlert">
+            <div class="alert alert-success">
+                <button (click)="closeAlert()" class="close">
+                    &times;
+                </button>
+                <strong>Success</strong>
+            </div>
+        </div>
+    </div>
+</div>

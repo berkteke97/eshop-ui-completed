@@ -1,0 +1,19 @@
+.cart-items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between items */
+  }
+  
+  .cart-item {
+    border: 1px solid #ccc; /* Optional: Add border around each item */
+    padding: 10px; /* Optional: Add padding inside each item */
+    border-radius: 5px; /* Optional: Rounded corners */
+    background-color: #f9f9f9; /* Optional: Background color */
+    text-align: center; /* Center-align text */
+  }
+  
+  .cart-item img {
+    max-width: 100%; /* Ensure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+  

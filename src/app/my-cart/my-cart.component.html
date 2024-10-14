@@ -1,0 +1,22 @@
+<div class="cart-container">
+    <h2>Your Cart</h2>
+  
+    <div *ngIf="cart">
+      <div class="cart-items-grid">
+        <div *ngFor="let item of cart.items" class="cart-item">
+          <img [src]="item.imageFile" alt="Product Image" width="100">
+          
+          <p>Quantity: <span class="font-bold">{{ item.quantity }}</span></p>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!cart">
+      <p>Your cart is empty.</p>
+    </div>
+  
+    <div *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  
