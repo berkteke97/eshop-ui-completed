@@ -1,0 +1,17 @@
+.home {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .featured-products {
+    margin-top: 30px;
+  }
+  
+  .product {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

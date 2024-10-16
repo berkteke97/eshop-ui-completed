@@ -26,6 +26,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CartService } from './cart/cart.service';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 
@@ -43,7 +44,8 @@ const routes: Routes = [
     EditProductComponent,
     EditProfileComponent,
     AddToCartComponent,
-    MyCartComponent
+    MyCartComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

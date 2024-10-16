@@ -1,19 +1,63 @@
 .cart-items-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 20px; /* Space between items */
-  }
-  
-  .cart-item {
-    border: 1px solid #ccc; /* Optional: Add border around each item */
-    padding: 10px; /* Optional: Add padding inside each item */
-    border-radius: 5px; /* Optional: Rounded corners */
-    background-color: #f9f9f9; /* Optional: Background color */
-    text-align: center; /* Center-align text */
-  }
-  
-  .cart-item img {
-    max-width: 100%; /* Ensure the image is responsive */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* İki sütun */
+  gap: 20px; /* Öğeler arasındaki boşluk */
+}
+
+.cart-item {
+  border: 1px solid #ccc; /* Her öğe etrafında sınır */
+  padding: 15px; /* Öğelerin iç boşluğu */
+  border-radius: 8px; /* Yuvarlatılmış köşeler */
+  background-color: #ffffff; /* Arka plan rengi */
+  text-align: center; /* Metni ortala */
+  transition: box-shadow 0.3s; /* Geçiş efekti */
+  position: relative; /* Pozisyonu göreceli hale getir */
+  overflow: hidden; /* Taşan içeriği gizle */
+}
+
+.cart-item:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Üzerine gelindiğinde gölge efekti */
+}
+
+.cart-item img {
+  max-width: 100%; /* Resmin duyarlı olmasını sağlar */
+  height: auto; /* En-boy oranını koru */
+  border-radius: 4px; /* Resmin köşelerini yuvarla */
+}
+
+.cart-item button {
+  background-color: red; /* Kırmızı arka plan */
+  color: white; /* Beyaz metin */
+  border: none; /* Kenarlık yok */
+  padding: 12px 20px; /* İç boşluk artırıldı */
+  border-radius: 4px; /* Yuvarlatılmış köşeler */
+  cursor: pointer; /* Fare imlecini değiştir */
+  font-size: 16px; /* Yazı boyutu artırıldı */
+  margin-top: 10px; /* Üstteki boşluk */
+  transition: background-color 0.3s; /* Arka plan rengi geçişi */
+  min-width: 120px; /* Butonun minimum genişliği ayarlandı */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Gölge efekti eklendi */
+  position: relative; /* Pozisyonu göreceli hale getir */
+  z-index: 1; /* Butonu diğer öğelerin üstüne getir */
+}
+
+.cart-item button:hover {
+  background-color: darkred; /* Fare ile üzerine gelindiğinde daha koyu bir kırmızı */
+}
+
+.remove-button-container {
+  margin-top: 10px; /* Butonun üstünde boşluk bırak */
+  text-align: center; /* Butonu ortala */
+}
+
+.cart-container {
+  padding: 20px; /* Tüm sepet alanına iç boşluk */
+  background-color: #f9f9f9; /* Sepet arka plan rengi */
+  border-radius: 8px; /* Sepet kenarlarını yuvarla */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sepet alanına gölge efekti */
+}
+
+h2 {
+  text-align: center; /* Başlığı ortala */
+  color: #333; /* Başlık rengi */
+}

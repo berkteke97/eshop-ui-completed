@@ -1,25 +1,37 @@
 <div class="container-fluid">
-    <table class="table table-light">
-      <thead class="thead-light">
-        <tr>
-          <th>Price</th>
-          <th>Stock</th>
-          <th>Details</th> <!-- Yeni sütun -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let s of product">
+  <!-- Fiyat sıralama butonları -->
+  <div>
+    <button (click)="sortByPrice('asc')" class="btn btn-primary">Fiyata Göre Artan</button>
+    <button (click)="sortByPrice('desc')" class="btn btn-secondary">Fiyata Göre Azalan</button>
+    <button (click)="sortByBrand('asc')" class="btn btn-success">Markaya Göre A->Z</button>
+    <button (click)="sortByBrand('desc')" class="btn btn-danger">Markaya Göre Z->A</button>
+    <button (click)="toggleOutOfStock()" class="btn btn-warning">
+      {{ showOutOfStock ? 'Stokta Olmayanları Gizle' : 'Stokta Olmayanları Göster' }}
+    </button> <!-- Stokta olmayan ürünleri gösterme/gizleme butonu -->
+  </div>
+
+  <table class="table table-light">
+    <thead class="thead-light">
+      <tr>
+        <th>Marka</th>
+        <th>Açıklama</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let s of sortedProducts"> <!-- ng-container kullanıldı -->
+        <tr *ngIf="showOutOfStock || s.stock > 0"> <!-- Stok kontrolü -->
+          <td>{{ s.brand }}</td>
+          <td>{{ s.detail }}</td>
           <td>{{ s.price }}</td>
           <td>{{ s.stock }}</td>
           <td>
-            <button [routerLink]="['/product-detail',s.id]">View Details</button>
+            <button [routerLink]="['/product-detail', s.id]">View Details</button>
           </td>
         </tr>
-      </tbody>
-    </table>
-
-    <div>
-      <button [routerLink]="['/add-product'] " class="btn-primary">Add New Product</button>
-    </div>
-  </div>
-  
+      </ng-container>
+    </tbody>
+  </table>
+</div>

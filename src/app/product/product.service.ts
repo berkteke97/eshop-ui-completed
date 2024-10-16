@@ -68,6 +68,10 @@ export class ProductService {
     const headers= this.getAuthHeaders();
     const cartItem = { productId, quantity };
     return this.http.post(`${this.baseUrl}/cart/add`, cartItem,{headers});
-
-}
+  }
+   // Sepetten ürün kaldırma metodu
+   removeFromCart(productId: string): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete(`${this.baseUrl}/cart/remove/${productId}`, { headers });
+  }
 }

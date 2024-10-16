@@ -8,8 +8,13 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product_/edit-product.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { HomeComponent } from './home/home.component'; 
 import { MyCartComponent } from './my-cart/my-cart.component';
 const routes: Routes = [
+  { 
+    path: "", 
+    component: HomeComponent 
+  }, // Ana sayfa için ekledim ama silinebilir. Reklam gelecekse buraya koyarım
   {
   path : "product-list",
   component :  ProductListComponent
