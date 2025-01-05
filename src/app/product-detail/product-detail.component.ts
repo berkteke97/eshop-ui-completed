@@ -105,15 +105,24 @@ convertImageToBase64(image: any): string {
 
   // Fetch recommendations
   loadRecommendations(productId: string): void {
-    this.productService.getProductRecommendations(productId).subscribe(
+    // Yeterli çeşitlilikte ve sayıda transaction verisi
+    const transactions: number[][] = [
+      [1, 2, 3],
+      [1, 2, 4],
+      [1, 3, 4],
+      [2, 3, 4],
+      [2, 3]
+    ];
+    const minSupport = 0.2;  // Minimum support değerini düşük tutmak
+  
+    this.productService.getProductRecommendations(productId, transactions, minSupport).subscribe(
       (recommendations: Product[]) => {
         this.productRecommendations = recommendations;
-        if( this.productRecommendations.length> 0){
+        if (this.productRecommendations.length > 0) {
           this.recommendedProductImages = {};
           this.productRecommendations.forEach(product => {
             if (product.imageUrl) {
               this.recommendedProductImages[product.id] = this.convertImageToBase64(product.imageUrl);
-              
             }
           });
         }
@@ -123,6 +132,8 @@ convertImageToBase64(image: any): string {
       }
     );
   }
+  
+  
 
   addToCart() {
     

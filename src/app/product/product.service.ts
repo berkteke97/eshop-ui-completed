@@ -18,7 +18,6 @@ export class ProductService {
     if (currentUser) {
       const parsedUser = JSON.parse(currentUser);
       token = parsedUser.token;
-      
     }
     return new HttpHeaders({
       'Authorization': 'Bearer ' + token
@@ -27,7 +26,7 @@ export class ProductService {
 
   createProduct(productData: FormData): Observable<any> {
     const headers = this.getAuthHeaders();
-    // Do not set the 'Content-Type' manually here, FormData manages it
+    // FormData kullandığımız için Content-Type manuel olarak ayarlanmalı falan filan 
     return this.http.post(`http://localhost:8092/product/addProduct`, productData, { headers });
   }
 
@@ -36,41 +35,39 @@ export class ProductService {
     return this.http.get<Product[]>(`http://localhost:8092/product`, { headers }).pipe(
       catchError((error) => {
         console.error('Error fetching product list', error);
-        return of([]);  // Return an empty array in case of error
+        return of([]);  // Hata durumunda boş bir dizi döndür
       })
     );
   }
 
   getProductById(id: string): Observable<Product> {
     const headers = this.getAuthHeaders();
-    return this.http.get<Product>(`${this.baseUrl}/product/${id}`,{headers});
+    return this.http.get<Product>(`${this.baseUrl}/product/${id}`, { headers });
   }
 
-  deleteProductByBarcode(barcode: string | undefined): Observable<any>{
-    const headers= this.getAuthHeaders();
-    
-     return this.http.delete<Product>(`${this.baseUrl}/product/deleteProduct/${barcode}`,{headers});
-  }
-
-  editProduct(product: FormData,id:string):  Observable<Product>{
+  deleteProductByBarcode(barcode: string | undefined): Observable<any> {
     const headers = this.getAuthHeaders();
-    return this.http.put<Product>(`${this.baseUrl}/product/updateProduct/${id}`,product,{headers});
-  
-      
-    }
-
-  getProductRecommendations(productId: string): Observable<Product[]>{
-    const headers= this.getAuthHeaders();
-    return this.http.get<Product[]>(`${this.baseUrl}/product/${productId}/recommendations`,{headers})
-  }  
-
-  addToCart(productId: number, quantity: number): Observable<any> {
-    const headers= this.getAuthHeaders();
-    const cartItem = { productId, quantity };
-    return this.http.post(`${this.baseUrl}/cart/add`, cartItem,{headers});
+    return this.http.delete<Product>(`${this.baseUrl}/product/deleteProduct/${barcode}`, { headers });
   }
-   // Sepetten ürün kaldırma metodu
-   removeFromCart(productId: string): Observable<any> {
+
+  editProduct(product: FormData, id: string): Observable<Product> {
+    const headers = this.getAuthHeaders();
+    return this.http.put<Product>(`${this.baseUrl}/product/updateProduct/${id}`, product, { headers });
+  }
+
+ 
+  getProductRecommendations(productId: string, transactions: number[][], minSupport: number): Observable<Product[]> { const headers = this.getAuthHeaders(); const url = `${this.baseUrl}/product/${productId}/recommendations?minSupport=${minSupport}`; return this.http.post<Product[]>(url, transactions, { headers });  
+}
+  
+  
+  addToCart(productId: number, quantity: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    const cartItem = { productId, quantity };
+    return this.http.post(`${this.baseUrl}/cart/add`, cartItem, { headers });
+  }
+
+  // Sepetten ürün kaldırma metodu
+  removeFromCart(productId: string): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.delete(`${this.baseUrl}/cart/remove/${productId}`, { headers });
   }
